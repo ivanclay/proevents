@@ -13,7 +13,8 @@ A simple project as a way to study Angular with dotnet 5 backend api.
     - [x] font awesome
     - [x] ngx-bootstrap
     - [x] bootstrap@4
-- [ ] Add BrowserAnimationsModule
+- [x] Add BrowserAnimationsModule
+- [x] Add Nav bootstrap
 
 ## Angular version (13.0.1)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
