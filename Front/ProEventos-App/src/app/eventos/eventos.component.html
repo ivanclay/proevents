@@ -23,7 +23,9 @@
         <button
             (click)="isImageCollapsed = !isImageCollapsed"
             class="btn btn-outline-light btn-sm"
-        >Imagem
+        >
+        <i class="{{!isImageCollapsed ? 'fa fa-eye' : 'fa fa-eye-slash'}}"></i>
+          Imagem
         </button>
     </th>
       <th>#</th>
@@ -44,15 +46,21 @@
               [style.width.px]="widthImg"
               [style.margin.px]="marginImg"
               alt=""> </td>
-      <td> {{item.eventoId}}</td>
+      <td> {{item.id}}</td>
       <td> {{item.tema}}</td>
       <td> {{item.local}}</td>
-      <td> {{item.dataEvento}}</td>
+      <td> {{item.dataEvento | DateTimeFormatPipe}}</td>
       <td> {{item.qtdPessoas}}</td>
-      <td> {{item.lote}}</td>
+      <td> {{item.lotes[0]}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm mr-2">Editar</button>
-        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+        <!-- <div class="btn-group"> -->
+          <button type="button" class="btn btn-primary btn-sm" tooltip="Editar">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button type="button" class="btn btn-danger btn-sm"  tooltip="Excluir" (click)="openModal(template)">
+            <i class="fa fa-trash"></i>
+          </button>
+        <!-- </div> -->
       </td>
     </tr>
   </tbody>
@@ -64,4 +72,14 @@
     </tr>
   </tfoot>
 </table>
+
+<!-- {{ eventos | json }} -->
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Você confirma?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
 
