@@ -26,23 +26,7 @@ namespace ProEventos.API.Controllers
             try
             {
                  var eventos = await _service.GetAllEventosAsync(true);
-                 if(eventos == null) return NotFound("Nenhum evento encontrado.");
-
-                //  var eventosRetorno = new List<EventoDto>();
-
-                //  foreach (var evento in eventos)
-                //  {
-                //      eventosRetorno.Add(new EventoDto(){
-                //          Id = evento.Id,
-                //          Local = evento.Local,
-                //          DataEvento = evento.DataEvento.ToString(),
-                //          Tema = evento.Tema,
-                //          QtdPessoas = evento.QtdPessoas,
-                //          ImagemURL = evento.ImagemURL,
-                //          Telefone = evento.Telefone,
-                //          Email = evento.Email
-                //      });
-                //  }
+                 if(eventos == null) return NoContent();
 
                  return Ok(eventos);
             }
@@ -59,7 +43,7 @@ namespace ProEventos.API.Controllers
             try
             {
                  var evento = await _service.GetEventoByIdAsync(id, true);
-                 if(evento == null) return NotFound("Nenhum evento encontrado.");
+                 if(evento == null) return NoContent();
                  return Ok(evento);
             }
             catch (Exception ex)
@@ -75,7 +59,7 @@ namespace ProEventos.API.Controllers
             try
             {
                  var evento = await _service.GetAllEventosByTemaAsync(tema, true);
-                 if(evento == null) return NotFound("Nenhum evento encontrado.");
+                 if(evento == null) return NoContent();
                  return Ok(evento);
             }
             catch (Exception ex)
@@ -118,13 +102,16 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpDelete("id")]
-        public async Task<IActionResult> DELETE(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
+                var evento = await _service.GetEventoByIdAsync(id, true);
+                if(evento == null) return NoContent();
+
                 return await _service.DeleteEventos(id) ?
                     Ok("Evento excluído com sucesso!") :
-                    BadRequest("Evento não excluído!");
+                    throw new Exception("Ocorreu um erro não especificado ao tentar excluir o evento.");
 
             }
             catch (Exception ex)
