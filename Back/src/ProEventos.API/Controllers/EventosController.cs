@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -109,9 +110,9 @@ namespace ProEventos.API.Controllers
                 var evento = await _service.GetEventoByIdAsync(id, true);
                 if(evento == null) return NoContent();
 
-                return await _service.DeleteEventos(id) ?
-                    Ok("Evento excluído com sucesso!") :
-                    throw new Exception("Ocorreu um erro não especificado ao tentar excluir o evento.");
+                return await _service.DeleteEventos(id) 
+                    ? Ok(new {message = "Evento excluído com sucesso!"}) 
+                    : throw new Exception("Ocorreu um erro não especificado ao tentar excluir o evento.");
 
             }
             catch (Exception ex)
