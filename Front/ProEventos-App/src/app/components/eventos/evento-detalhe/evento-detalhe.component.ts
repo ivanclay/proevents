@@ -93,9 +93,11 @@ export class EventoDetalheComponent implements OnInit {
     this.spinner.show();
     if(this.form.valid){
 
+      //Aqui foi refatorado -> Não funcionou pra mim.
+      //rever no final.
       if(this.estadoSalvar === 'post'){
         this.evento = {...this.form.value};
-        this.eventoService.postEvento(this.evento).subscribe(
+        this.eventoService.post(this.evento).subscribe(
           () => this.toastr.success('Evento cadastrado.','Sucesso'),
           (error: any) => {
             console.error(error);
@@ -106,7 +108,7 @@ export class EventoDetalheComponent implements OnInit {
         );
       }else{
         this.evento = {id: this.evento.id, ...this.form.value};
-        this.eventoService.putEvento(this.evento.id, this.evento).subscribe(
+        this.eventoService.put(this.evento).subscribe(
           () => this.toastr.success('Evento cadastrado.','Sucesso'),
           (error: any) => {
             console.error(error);
