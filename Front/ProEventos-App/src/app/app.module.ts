@@ -30,6 +30,7 @@ import { PerfilComponent } from './components/user/perfil/perfil.component';
 
 //SERVICES
 import { EventoService } from './services/evento.service';
+import { LoteService } from './services/lote.service';
 
 //PIPES
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
@@ -80,7 +81,8 @@ defineLocale('pt-br', ptBrLocale);
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    EventoService
+    EventoService,
+    LoteService
   ],
   bootstrap: [AppComponent]
 })
