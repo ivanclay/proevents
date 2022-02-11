@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Lote } from '@app/models/Lote';
 import { Observable, take } from 'rxjs';
+import { Evento } from '../models/Evento';
 
 @Injectable(
   // { providedIn: 'root'} //Injetado via appModule
@@ -11,21 +11,39 @@ export class EventoService {
 
   constructor(private http: HttpClient) { }
 
-  public getLotesByEventoId(eventoId: number): Observable<Lote[]> {
+  public getEventos(): Observable<Evento[]> {
     return this.http
-               .get<Lote[]>(`${this.baseURL}/${eventoId}`)
+               .get<Evento[]>(this.baseURL)
                .pipe(take(1));
   }
 
-  public saveLotes(eventoId: number, lotes: Lote[]): Observable<Lote[]> {
+  public getEventosByTema(tema: string): Observable<Evento[]> {
     return this.http
-               .put<Lote[]>(`${this.baseURL}/${eventoId}`, lotes)
+               .get<Evento[]>(`${this.baseURL}/${tema}/tema`)
                .pipe(take(1));
   }
 
-  public deleteLote(eventoId: number, loteId: number): Observable<any> {
+  public getEventoById(id: number): Observable<Evento> {
     return this.http
-               .delete(`${this.baseURL}/${eventoId}/${loteId}`)
+               .get<Evento>(`${this.baseURL}/${id}`)
+               .pipe(take(1));
+  }
+
+  public post(evento: Evento): Observable<Evento[]> {
+    return this.http
+               .post<Evento[]>(this.baseURL, evento)
+               .pipe(take(1));
+  }
+
+  public put(evento: Evento): Observable<Evento> {
+    return this.http
+               .put<Evento>(`${this.baseURL}/${evento.id}`, evento)
+               .pipe(take(1));
+  }
+
+  public deleteEvento(id: number): Observable<any> {
+    return this.http
+               .delete(`${this.baseURL}/${id}`)
                .pipe(take(1));
   }
 
