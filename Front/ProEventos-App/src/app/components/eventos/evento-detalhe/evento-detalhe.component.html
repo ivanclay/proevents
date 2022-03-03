@@ -140,7 +140,7 @@
               <input
                   [ngClass]="cssValidator(lotes.get(i+'.dataInicio'))"
                   bsDatepicker
-                  [bsConfig]="bsConfig"
+                  [bsConfig]="bsConfigLote"
                   value="{{i+'.dataInicio' | DateTimeFormatPipe}}"
                   type="text" class="form-control"
                   formControlName="dataInicio"
@@ -151,7 +151,7 @@
               <input
                   [ngClass]="cssValidator(lotes.get(i+'.dataFim'))"
                   bsDatepicker
-                  [bsConfig]="bsConfig"
+                  [bsConfig]="bsConfigLote"
                   value="{{i+'.dataFim' | DateTimeFormatPipe}}"
                   type="text" class="form-control"
                   formControlName="dataFim"
