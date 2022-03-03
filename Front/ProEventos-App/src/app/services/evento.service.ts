@@ -29,9 +29,9 @@ export class EventoService {
                .pipe(take(1));
   }
 
-  public post(evento: Evento): Observable<Evento[]> {
+  public post(evento: Evento): Observable<Evento> {
     return this.http
-               .post<Evento[]>(this.baseURL, evento)
+               .post<Evento>(this.baseURL, evento)
                .pipe(take(1));
   }
 
