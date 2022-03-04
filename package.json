@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ngx-currency": "^2.5.3"
+  }
+}

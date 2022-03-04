@@ -232,4 +232,8 @@ export class EventoDetalheComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  retornaTituloLote(nome: string):string {
+    return nome === null || nome === '' ? 'Nome do Lote' : nome;
+  }
+
 }
