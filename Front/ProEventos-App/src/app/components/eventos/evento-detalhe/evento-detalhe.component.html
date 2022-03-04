@@ -157,6 +157,7 @@
                   formControlName="dataFim"
                   placeholder="01/01/2019">
             </div>
+            <!-- Foi realizada uma implementação extra pra corrigir problema de datas nos lotes, mas eu não fiz, porque aqui funcionou. (aula 174) -->
           </div>
         </fieldset>
       </div>
@@ -172,7 +173,7 @@
     <button class="btn btn-outline-secondary mr-auto border">
       Cancelar Alteração
     </button>
-    <button (click)="salvarLotes()" class="btn btn-success">
+    <button [disabled]="!form.controls['lotes'].valid" (click)="salvarLotes()" class="btn btn-success">
       Salvar Lotes
     </button>
   </div>

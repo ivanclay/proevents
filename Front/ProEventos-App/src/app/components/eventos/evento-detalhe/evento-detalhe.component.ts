@@ -73,17 +73,17 @@ export class EventoDetalheComponent implements OnInit {
   public carregarEvento(): void {
     this.eventoId = +this.activetedRouter.snapshot.paramMap.get('id')!;
 
-    if(this.eventoId !== null || this.eventoId === 0){
+    if (this.eventoId !== null || this.eventoId !== 0) {
       this.spinner.show();
       this.estadoSalvar = 'put';
       this.eventoService.getEventoById(this.eventoId).subscribe(
         (evento: Evento) => {
           this.evento = {...evento};
           this.form.patchValue(this.evento);
-          //this.carregarLotes();
-          this.evento.lotes.forEach(lote => {
-            this.lotes.push(this.criarLote(lote));
-          })
+          this.carregarLotes();
+          // this.evento.lotes.forEach(lote => {
+          //   this.lotes.push(this.criarLote(lote));
+          // })
         },
         (error: any) => {
           this.toastr.error('Erro ao tentar carregar evento.','Erro');
@@ -186,9 +186,8 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public salvarLotes(): void {
-    this.spinner.show();
-
     if(this.form.controls['lotes'].valid){
+      this.spinner.show();
       this.loteService.saveLotes(this.eventoId, this.form.value.lotes)
       .subscribe(
         () => {
