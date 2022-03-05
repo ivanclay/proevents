@@ -132,7 +132,6 @@
               <label>Preço</label>
               <input
                   currencyMask
-                  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
                   [ngClass]="cssValidator(lotes.get(i+'.preco'))"
                   type="text" class="form-control"
                   formControlName="preco"
